@@ -31,6 +31,23 @@ class toDoList
         }
     }
 };
+class toBuyLst: public toDoList
+{
+    public:
+    toBuyLst(string name, time_t time): toDoList(name, time)
+    {
+        this->owner_name = name;
+        this->timestamp = time;
+    }
+    void display()
+    {
+        cout << "To-Buy List of " << owner_name << " created at " << ctime(&timestamp);
+        for (auto i=lst.begin(); i!=lst.end(); i++)
+        {
+            cout << *i << endl;
+        }
+    }
+};
 int main()
 {
     toDoList Person1("Lindean", time(0));
@@ -40,4 +57,12 @@ int main()
     Person1.display();
     Person1.remove("sleep");
     Person1.display();
+
+    toBuyLst Person2("Haisley", time(0));
+    Person2.add("milk");
+    Person2.add("bread");
+    Person2.add("water");
+    Person2.display();
+    Person2.remove("milk");
+    Person2.display();
 }
